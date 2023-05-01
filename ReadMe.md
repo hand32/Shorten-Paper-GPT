@@ -47,8 +47,19 @@ follows a logical structure. A well-ordered document will
 lead to a higher quality of shortening, allowing the program 
 to preserve important information while reducing the overall length.
 
+I recommend to repeat the shortening process (`SHORTEN_REPEAT`)
+rather than adjust extremely small shorten ratio (`SHORTEN_RATIO`)
+for the extremely long document. However, it will cost more accordingly.💸
+
 ## Text Settings (.env)
 The following are the available text settings that can be adjusted in the `.env` file:
+
+#### SHORTEN_REPEAT (int): bigger than 0
+Shorten provided document in `SHORTEN_RATIO` ratio of token length 
+and repeat it `SHORTEN_REPEAT` times.
+In conclusion, the document will be
+shortened in (`SHORTEN_RATIO` ** `SHORTEN_REPEAT`) ratio of token length.\
+The default value is 1.
 
 #### SHORTEN_RATIO (float): (0, 1]
 The shortening ratio of the original text.\
@@ -69,7 +80,7 @@ The default value is 0.2.
 Additionally, you can consider to fine-tune the language model parameters
 for the better output quality:
 * `LANG_MODEL_NAME` (str) : [Models](https://platform.openai.com/docs/models/model-endpoint-compatibility)
-* `TEXT_TOKEN_LEN` (int) : [Max token list](https://platform.openai.com/docs/models/gpt-3-5)
+* `TEXT_TOKEN_LEN` (int) : [Max Token List](https://platform.openai.com/docs/models/gpt-3-5)
 * `MODEL_TEMPERATURE` (float) : `[0, 2]`
 * `MODEL_TOP_P` (float) : `[0, 1]`
 * `MODEL_PRESENCE_PENALTY` (float) : `[-2, 2]`
