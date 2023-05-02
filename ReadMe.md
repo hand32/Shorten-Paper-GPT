@@ -88,6 +88,39 @@ for the better output quality:
 * `MODEL_PRESENCE_PENALTY` (float) : `[-2, 2]`
 * `MODEL_FREQUENCY_PENALTY` (float) : `[-2, 2]`
 
+## Result Comparison Sample
+#### Target Paper
+* [VR-HandNet: A Visually and Physically Plausible Hand Manipulation System in Virtual Reality](https://doi.org/10.1109/TVCG.2023.3255991)
+#### Shortened Full Paper .pdf (`SHORTEN_REPEAT=5`, `SHORTEN_RATIO=0.4`)
+This study introduces a new method for manipulating virtual objects using VR-HandNet.
+It maps the VR controller to the virtual hand and uses a deep neural network
+to determine desired joint orientations of the virtual hand model at each frame
+based on information about the virtual hand, VR controller input, 
+and hand-object spatial relations. The proposed approach combines 
+reinforcement learning-based training with imitation learning paradigm that increases 
+visual plausibility by mimicking reference motion datasets. To evaluate this approach,
+424 training datasets having 50,100 frames and 247 test datasets having 30,332 frames
+were collected using Oculus Quest HMDs/controllers under Unity engine implementation
+with Nvidia PhysX4.1 simulated physical skeletal models having capsule/box colliders 
+detecting collision between hands/objects were used. The evaluation section classified 
+test datasets into primitive-level objects (PL), scaled-primitive-level objects (SPL), 
+and complex level objects (CL) further classified into reference pose (RP) 
+and reference object (RO). This paper provides valuable insights into collecting
+reference motion data for virtual reality applications while introducing a promising 
+approach to dexterous manipulation using physics-based approaches and deep reinforcement learning algorithms.
+#### Paper's Original Abstract
+This study aims to allow users to perform dexterous hand manipulation of objects in virtual environments with hand-held VR
+controllers. To this end, the VR controller is mapped to the virtual hand and the hand motions are dynamically synthesized when the
+virtual hand approaches an object. At each frame, given the information about the virtual hand, VR controller input, and hand-object
+spatial relations, the deep neural network determines the desired joint orientations of the virtual hand model in the next frame. The
+desired orientations are then converted into a set of torques acting on hand joints and applied to a physics simulation to determine the
+hand pose at the next frame. The deep neural network, named VR-HandNet, is trained with a reinforcement learning-based approach.
+Therefore, it can produce physically plausible hand motion since the trial-and-error training process can learn how the interaction
+between hand and object is performed under the environment that is simulated by a physics engine. Furthermore, we adopted an
+imitation learning paradigm to increase visual plausibility by mimicking the reference motion datasets. Through the ablation studies, we
+validated the proposed method is effectively constructed and successfully serves our design goal. A live demo is demonstrated in the
+supplementary video.
+
 ## Credits
 **Shorten Paper** was developed by _**Han DongHeun**_ and using the language model 
 provided by OpenAI, 

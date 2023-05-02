@@ -52,7 +52,7 @@ def main() -> None:
                 Fore.CYAN,
                 f"{num+1}/{len(files)}"
             )
-            shorten_result_info.append(("ERROR!", "ERROR!"))
+            shorten_result_info.append(("ERROR!", "ERROR!", "ERROR!"))
             document_output_name = "Error: Didn't saved."
             try:
                 input_dir = CFG.papers_input_dir if repeat_num == 0 else CFG.papers_output_dir
@@ -62,6 +62,7 @@ def main() -> None:
                 shorten_result_info[-1] = (len(document_text), len(shortened_text), document_output_name)
             except ValueError as e:
                 logger.error(f"ValueError with file {document_name}:", f"{e}")
+                print()
                 continue
 
             if not os.path.exists(CFG.papers_output_dir):
