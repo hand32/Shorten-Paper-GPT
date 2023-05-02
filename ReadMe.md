@@ -59,7 +59,9 @@ Shorten provided document in `SHORTEN_RATIO` ratio of token length
 and repeat it `SHORTEN_REPEAT` times.
 In conclusion, the document will be
 shortened in (`SHORTEN_RATIO` ** `SHORTEN_REPEAT`) ratio of token length.\
-The default value is 1.
+Usually, I use 3-5 for the academic papers.\
+The default value is 3.\
+❗ However, it will cost more accordingly.💸
 
 #### SHORTEN_RATIO (float): (0, 1]
 The shortening ratio of the original text.\

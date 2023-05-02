@@ -253,17 +253,16 @@ def shorten_text(
                 "content": f"You are a text revise assistant. "
                            f"Text chunks are serving sequently and current chunk is "
                            f"number {i+1} of total {len(chunks)} chunks. "
-                           f"The \"Previous Text\" will be placed before your output, "
-                           f"and the \"Next Text\" will be placed after your output. "
-                           f"Consider your output to be smoothly joined with those texts. "
-                           f"Preserve the same language."
+                           f"The \"Previous Text\" will be placed before your output, do not rephrase it. "
+                           f"The \"Next Text\" will be placed after your output, do not rephrase it. "
+                           f"Consider your output to be smoothly joined with those texts."
             },
             {
                 "role": "user",
                 "content": f"\"Revise the \"Current Text\" to exact "
                            f"{math.floor(current_token_cnt * shorten_ratio)} "
                            f"words as you can. "
-                           f"Meanwhile, retain important information "
+                           f"Meanwhile, retain important key information "
                            f"and the form of the original text as you can.\" "
                            f"\"Current Text\": \"\"\"{current_text}\"\"\" "
                            f"\"Previous Text\": \"\"\"{previous_text}\"\"\" "
