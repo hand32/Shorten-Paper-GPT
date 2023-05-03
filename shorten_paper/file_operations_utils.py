@@ -134,6 +134,8 @@ def read_textual_file(file_path):
     file_extension = os.path.splitext(file_path)[1].lower()
     parser = extension_to_parser.get(file_extension)
     if not parser:
+        if not file_extension or file_extension == "":
+            file_extension = "Directory"
         raise ValueError(f"Unsupported file format: {file_extension}. Supporting {list(extension_to_parser.keys())}")
     file_context = FileContext(parser)
     return file_context.read_file(file_path)
