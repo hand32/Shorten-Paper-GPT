@@ -282,7 +282,7 @@ def read_textual_file(file_path):
 
 
 def shorten_text(
-        text: str, filename: str,
+        text: str, filename: str, instruction: str,
         lang_model: str = CFG.lang_model_name,
         shorten_ratio: float = CFG.shorten_ratio,
         previous_text_token_ratio: float = CFG.previous_text_token_ratio,
@@ -293,6 +293,7 @@ def shorten_text(
     Args:
         text (str): The text to summarize.
         filename (str): The filename of given text.
+        instruction (str): The instruction model will consider.
         lang_model (str): The name of the language model to use for encoding.
         shorten_ratio (float): Ratio to be shortened (0, 1].
         previous_text_token_ratio (float):  Ratio to be referenced [0, 1).
@@ -334,6 +335,11 @@ def shorten_text(
         f"{shorten_ratio}"
     )
     logger.typewriter_log(
+        "Instruction:",
+        Fore.GREEN,
+        f"\"{instruction}\""
+    )
+    logger.typewriter_log(
         "Try to shorten",
         Fore.BLUE
     )
@@ -346,8 +352,10 @@ def shorten_text(
     print()
 
     shorten_text_list = []
+    instruction_token_cnt = count_string_tokens(instruction)
     current_text_token_target = math.floor(
-        CFG.text_token_len / (1 + shorten_ratio + previous_text_token_ratio + next_text_token_ratio)
+        (CFG.text_token_len - instruction_token_cnt) /
+        (1 + shorten_ratio + previous_text_token_ratio + next_text_token_ratio)
     )
     chunks = split_with_next_text(
         text, lang_model=lang_model,
@@ -403,7 +411,8 @@ def shorten_text(
                 "role": "user",
                 "content": f"\"Revise the \"Current Text\" to exact "
                            f"{math.floor(current_token_cnt * shorten_ratio)} "
-                           f"words as you can. "
+                           f"words as you can, considering the following instruction: \"{instruction}\" "
+                           f"-- if the instruction cannot be considered, revise the text as mentioned. "
                            f"Meanwhile, retain important key information "
                            f"and the form of the original text as you can.\" "
                            f"\"Current Text\": \"\"\"{current_text}\"\"\" "

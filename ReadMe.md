@@ -17,6 +17,8 @@ even after being split into smaller parts.
 Also, you can adjust the shorten ratio of the given text length and 
 the ratio of previous/next text chunk to be included in an api call.
 
+Now, you can input the instruction to each file!
+![image](https://user-images.githubusercontent.com/38789681/236756791-08e56536-ce04-4ad5-8462-6bcbca417b02.png)
 
 ## Requirements
 

@@ -31,8 +31,10 @@ def main() -> None:
         "Target files",
         Fore.LIGHTCYAN_EX
     )
+    instructions = []
     for num, document_name in enumerate(files):
         logger.typewriter_log(f"| {num+1} - {document_name}")
+        instructions.append(input("| Enter the instruction: "))
 
     print()
     shorten_result_info = []
@@ -58,7 +60,7 @@ def main() -> None:
                 input_dir = CFG.papers_input_dir if repeat_num == 0 else CFG.papers_output_dir
                 document_text = read_textual_file(os.path.join(input_dir, document_name))
                 shorten_result_info[-1] = (len(document_text), "ERROR!", document_output_name)
-                shortened_text = shorten_text(document_text, document_name)
+                shortened_text = shorten_text(document_text, document_name, instructions[num])
                 shorten_result_info[-1] = (len(document_text), len(shortened_text), document_output_name)
             except ValueError as e:
                 logger.error(f"ValueError with file {document_name}:", f"{e}")

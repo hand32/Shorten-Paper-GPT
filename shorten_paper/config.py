@@ -14,7 +14,7 @@ class Config(metaclass=Singleton):
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         openai.api_key = self.openai_api_key
         self.lang_model_name = os.getenv("LANG_MODEL_NAME")
-        self.text_token_len = int(os.getenv("TEXT_TOKEN_LEN")) - 122  # 122 tokens for pre-defined prompt.
+        self.text_token_len = int(os.getenv("TEXT_TOKEN_LEN")) - 150  # 150 tokens for pre-defined prompt.
         if self.text_token_len <= 0:
             raise ValueError("text_token_len (int) should be over 0.")
 
