@@ -312,6 +312,7 @@ def shorten_text(
         raise ValueError("next_text_token_ratio must be (0, 1].")
     if previous_text_token_ratio + next_text_token_ratio >= 1:
         raise ValueError("Sum of next/previous_text_token_ratio must be under 1.0.")
+    instruction = instruction.strip()
 
     logger.typewriter_log(
         "File name:",
@@ -337,7 +338,7 @@ def shorten_text(
     logger.typewriter_log(
         "Instruction:",
         Fore.GREEN,
-        f"\"{instruction}\""
+        f"\"{instruction}\"" if instruction != "" else "None"
     )
     logger.typewriter_log(
         "Try to shorten",
@@ -411,8 +412,10 @@ def shorten_text(
                 "role": "user",
                 "content": f"\"Revise the \"Current Text\" to exact "
                            f"{math.floor(current_token_cnt * shorten_ratio)} "
-                           f"words as you can, considering the following instruction: \"{instruction}\" "
-                           f"-- if the instruction cannot be considered, revise the text as mentioned. "
+                           f"words as you can" +
+                           (". " if instruction == ""
+                            else f", focusing on the following instruction: \"{instruction}\" " +
+                                 f"-- if the instruction cannot be considered, revise the text as mentioned. ") +
                            f"Meanwhile, retain important key information "
                            f"and the form of the original text as you can.\" "
                            f"\"Current Text\": \"\"\"{current_text}\"\"\" "

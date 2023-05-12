@@ -34,7 +34,7 @@ def main() -> None:
     instructions = []
     for num, document_name in enumerate(files):
         logger.typewriter_log(f"| {num+1} - {document_name}")
-        instructions.append(input("| Enter the instruction: "))
+        instructions.append(input("| Enter the instruction (None to just shorten): ").strip())
 
     print()
     shorten_result_info = []
